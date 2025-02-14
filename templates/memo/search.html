@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mt-5">メモ一覧</h1>
+
+  {% for memo in memos %}
+    <div class="card bg-light shadow-sm mt-3">
+      <div class="card-body">
+        <h2>{{ memo.title }}</h2>
+        <p>{{ memo.content }}</p>
+        <p>タグ:
+          {% for tag in memo.tags.all %}
+            <span>{{ tag.name }}</span>
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+  {% empty %}
+    <p>該当するメモはありません。</p>
+  {% endfor %}
+{% endblock %}

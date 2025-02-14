@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1 class="mt-5">タグ一覧</h1>
+  <form method="post" action="{% url 'memo:tag_delete' %}">
+    {% csrf_token %}
+    {% for tag in tags %}
+      <div class="card bg-light shadow-sm mt-3">
+        <label>
+        <div class="card-body d-flex align-items-center">
+          <input type="checkbox" name="selected_tags" value="{{ tag.id }}" class="form-check-input me-2">
+          <p class="mb-0">{{ tag.name }}</p>
+        </div>
+    </label>
+      </div>
+    {% empty %}
+      <span>タグなし</span>
+    {% endfor %}
+    <div class="mt-3">
+      {% bootstrap_button button_type='submit' content='選択したタグを削除' size='md' button_class='btn-danger' %}
+    </div>
+  </form>
+  <div class="mt-3">
+    <a href="{% url 'memo:index' %}">{% bootstrap_button button_type='submit' button_class='btn-secondary' content='一覧ページへ戻る' size='md' %}</a>
+  </div>
+{% endblock %}
