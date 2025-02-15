@@ -9,7 +9,7 @@ class MemoForm(forms.ModelForm):
     )
     new_tags = forms.CharField(
         required=False, 
-        help_text="カンマ区切りで新しいタグを追加できます"
+        help_text="カンマ区切りでタグを複数追加できます"
     )
 
     class Meta:
